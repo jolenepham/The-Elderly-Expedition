@@ -33,9 +33,10 @@ class AnchorLayoutApp(App):
         btn = Button(text ='Score',
                      size_hint =(.3, .3),
                      background_color =(1.0, 0.0, 0.0, 1.0))
-      
+        
         layout.add_widget(btn)
         return layout 
+  
   
 # creating the object root for AnchorLayoutApp() class  
 root = AnchorLayoutApp()
