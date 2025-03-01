@@ -42,3 +42,30 @@ root = AnchorLayoutApp()
 # Run the Kivy app
 root.run()
 
+class Welcome(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        master = BoxLayout(orientation='vertical', padding=20, spacings=20)
+        master.add_widget(Label(text="Welcome to The Elder's Expedition", font_size='40sp', font_name="DejaVuSans"))
+        master.add_widget(Button())
+        self.add_widget(master)
+
+class ScreenTransition(Button):
+    def __init__(self, screen, direction="up", goal="home" **kwargs):
+        super().__init__(**kwargs)
+        self.screen = screen
+        self.direction = direction
+        self.goal = goal
+
+    def on_press(self):
+        self.screen.manager.transition.direction = self.direction
+        self.screen.manager.current = self.goal
+
+class MainApp(App):
+    def build(self):
+        sm = ScreenManager()
+        sm.add_widget(Home(name="home"))
+        return sm
+    
+if __name__ in "__main__":
+    MainApp().run()
