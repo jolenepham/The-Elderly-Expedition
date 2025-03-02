@@ -1,0 +1,96 @@
+MDScreen:
+    description:description
+    name: "add_task"
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "40sp"
+            pos_hint: {"center_y": 0.95}
+            theme_text_color: "Custom"
+            text_color: 1, 170/255, 23/255, 1
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+        MDLabel:
+            text: "[b]Add Task[/b]"
+            pos_hint: {"center_x": 0.6, "center_y": 0.91}
+            font_name: "Arial"
+            markup: True
+            font_size: "30sp"
+
+        MDFloatLayout:
+            size_hint: 0.85, 0.08
+            pos_hint: {"center_x": 0.5, "center_y": 0.81}
+            canvas:
+                Color:
+                    rgb:(238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: title
+                hint_text: "Title"
+                size_hint: 1, None
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                height: self.minimum_height
+                multiline: False
+                cursor_color: 1, 170/255, 23/255, 1
+                cursor_width: "2sp"
+                foreground_color: 1, 170/255, 23/255, 1
+                background_color: 0,0,0,0
+                padding: 15
+                font_name: "Arial"
+                font_size: "18sp"
+        MDFloatLayout:
+            size_hint: 0.85, 0.28
+            pos_hint: {"center_x": 0.5, "center_y": 0.61}
+            canvas:
+                Color:
+                    rgb:(238/255, 238/255, 238/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+            TextInput:
+                id: description
+                hint_text: "Description"
+                size_hint: 1, None
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                height: 180
+                multiline: False
+                cursor_color: 1, 170/255, 23/255, 1
+                cursor_width: "2sp"
+                foreground_color: 1, 170/255, 23/255, 1
+                background_color: 0,0,0,0
+                padding: 15
+                font_name: "Arial"
+                font_size: "18sp"
+
+        Button:
+            text: "[b]ADD TASK[/b]"
+            size_hint: 0.45, 0.08
+            pos_hint: {"center_x": 0.5, "center_y": 0.36}
+            background_color: 0,0,0,0
+            font_name: "Arial"
+            markup: True
+            font_size: "18sp"
+            color: 1,1,1,1
+            on_release:
+                app.add_task(title.text, description.text)
+            canvas.before:
+                Color:
+                    rgb: (1, 170/255, 23/255, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [25]
+
+
+
+
+
+
+
+
