@@ -1,6 +1,7 @@
 import mathGame
 import sequence
 import Crazy_Cards
+import To_Do_List
 
 from cProfile import label
 from kivy.app import App
@@ -160,12 +161,13 @@ class GameSelectScreen(Screen):
         self.add_widget(layout)
 
     def game1_action(self, instance):
-        print("Game 1 selected")
-        # Implement game 1 action here
+        print("Math Madness Game Selected")
+        mathGame.MathMadnessApp().run()
+        
 
     def game2_action(self, instance):
-        print("Game 2 selected")
-        # Implement game 2 action here
+        print("Crazy Cards Game Selected")
+        Crazy_Cards.Memory().run()
 
     def game3_action(self, instance):
         print("Silly Sequence Game Selected")
