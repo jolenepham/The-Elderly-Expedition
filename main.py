@@ -1,7 +1,3 @@
-import mathGame
-import sequence
-import Crazy_Cards
-
 from cProfile import label
 from kivy.app import App
 from kivy.app import App
@@ -20,56 +16,70 @@ from kivy.uix.button import Button
 from kivy.clock import Clock
 from kivy.graphics import *
 from kivy.uix.image import Image
-
+from kivy.core.window import Window
+from kivy.animation import Animation
 
 class SplashScreen(Screen):
     def __init__(self, **kwargs):
-        trees = Image(source='trees.png')
         super().__init__(**kwargs)
         with self.canvas.before:
             Color(0.6, 0.8, 0.9, 1)  # Pale blue background
             self.rect = Rectangle(size=self.size, pos=self.pos)
+
         
         self.bind(size=self.update_rect, pos=self.update_rect)
+        background = Image(source='trees.png', allow_stretch=True, keep_ratio=False)
+        self.add_widget(background)
 
-        # Main layout inside an AnchorLayout for better control
-        anchor_layout = AnchorLayout(anchor_x='center', anchor_y='center')
-
-        layout = BoxLayout(orientation='vertical', spacing=10, padding=50, 
-                           size_hint=(0.8, 0.5))
+        layout = BoxLayout(orientation='vertical', spacing=10, padding=20, 
+        size_hint=(0.8, 0.5), pos_hint={'center_x': 0.5, 'top': 1})
 
         # Welcome Label - properly centered
         welcome_label = Label(
             text="Welcome to The Elder's Expedition", 
             font_size=90, bold=True, color=(1, 1, 1, 1),
-            size_hint_y=None, halign="center", valign="top")
+            size_hint_y=None, height=120, halign = "center")
 
         # Creators Label - positioned slightly lower
         creators = Label(
             text="Made by The Lost and Found",
-            font_size=30, 
-            size_hint_y=None, pos = (80,80))
-        
-        class FullImage(Image):
-            pass
-        
+            font_size=50, 
+            size_hint_y=None, height = 40, halign = "center")
         
         layout.add_widget(welcome_label)
         layout.add_widget(creators)
-        anchor_layout.add_widget(layout)
-        self.add_widget(anchor_layout)
-        layout.add_widget(trees)
+        self.add_widget(layout)
+        
 
     def on_enter(self):
-        # Schedule transition to StartScreen after 5 seconds
-        Clock.schedule_once(self.switch_to_start, 5)
+        # Schedule transition to LoadScreen after 5 seconds
+        Clock.schedule_once(self.switch_to_load, 5)
 
-    def switch_to_start(self, dt):
-       self.manager.current = "start"
+    def switch_to_load(self, dt):
+       self.manager.current = "load"
 
     def update_rect(self, *args):
         self.rect.size = self.size
         self.rect.pos = self.pos
+
+#Loading Screen
+class LoadScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        Window.clearcolor = (1, 1, 1, 1)  # White background
+        
+        # Load animated GIF
+        gif = Image(source='old-guy-image.jpg')
+        gif.anim_delay = 0.001
+        self.add_widget(gif)
+
+    def on_enter(self):
+        # Schedule transition to StartScreen after 8 seconds
+        Clock.schedule_once(self.switch_to_start, 8)
+
+    def switch_to_start(self, dt):
+        self.manager.current = "start"
+    
 
 
 #Start Screen
@@ -77,11 +87,8 @@ class StartScreen(Screen):
     #Click Button to Get Started and go to home
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        with self.canvas.before:
-            Color(0, 1, 0, 1)  # Green color
-            self.rect = Rectangle(size=self.size, pos=self.pos)
-        
-
+        Window.clearcolor =(0.3,0.1,0.4,1)
+            
         layout = AnchorLayout(anchor_x='center', anchor_y='center')
         begin = Button(text = "Get Started", 
                        size_hint=(None, None), size=(390, 150),
@@ -90,11 +97,12 @@ class StartScreen(Screen):
                        font_size=50,
                        bold=True)
         layout.add_widget(begin)
-        self.add_widget(layout)
+
         begin.bind(on_press = self.go_to_home)
+        self.add_widget(layout)
+
     def go_to_home(self,dt):
         self.manager.current = "home"
-
 
 # Home Screen with 3 buttons
 class HomeScreen(Screen):
@@ -144,19 +152,16 @@ class GameSelectScreen(Screen):
         self.add_widget(layout)
 
     def game1_action(self, instance):
-        print("Math Madness Game Selected")
-        mathGame.MathMadnessApp().run()
-       
+        print("Game 1 selected")
+        # Implement game 1 action here
 
     def game2_action(self, instance):
-        print("Crazy Cards Game Selected")
-        Crazy_Cards.Memory().run()
-        
+        print("Game 2 selected")
+        # Implement game 2 action here
 
     def game3_action(self, instance):
-        print("Silly Sequence Game Selected")
-        sequence.MemoryGameApp().run()
-        
+        print("Game 3 selected")
+        # Implement game 3 action here
 
 # Main App
 class EldersExpeditionApp(App):
@@ -172,7 +177,7 @@ class EldersExpeditionApp(App):
        sm.add_widget(HomeScreen(name="home"))
        sm.add_widget(StartScreen(name="start"))
        sm.add_widget(GameSelectScreen(name="games"))
-
+       sm.add_widget(LoadScreen(name="load"))
 
        return sm
 
