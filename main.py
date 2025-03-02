@@ -1,6 +1,7 @@
 import mathGame
 import sequence
 import Crazy_Cards
+import To_Do_List
 
 from cProfile import label
 from kivy.app import App
@@ -109,6 +110,7 @@ class HomeScreen(Screen):
 
         # Bind the Games button to the go_to_games method
         btn_games.bind(on_press=self.go_to_games)
+        btn_todo.bind(on_press=self.run_to_do_list)
 
         # Add widgets to layout
         layout.add_widget(btn_score)
@@ -120,6 +122,9 @@ class HomeScreen(Screen):
     def go_to_games(self, dt):
         # Switch to the game select screen when the button is clicked
         self.manager.current = "games"
+
+    def run_to_do_list(self, dt):
+        To_Do_List.ToDoApp().run()   
 
 
 
@@ -156,7 +161,7 @@ class GameSelectScreen(Screen):
     def game3_action(self, instance):
         print("Silly Sequence Game Selected")
         sequence.MemoryGameApp().run()
-        
+
 
 # Main App
 class EldersExpeditionApp(App):
