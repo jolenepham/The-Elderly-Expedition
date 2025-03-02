@@ -39,7 +39,13 @@ class MemoryGameApp(App):
         self.layout.add_widget(self.length_input)
 
         # Button to start the game
-        self.start_button = Button(text="Start Game", size_hint=(1, None), background_color=(0.2, 0.8, 0.5, 1), halign="center")
+        self.start_button = Button(text="Start Game", 
+                                   size_hint=(1, None), 
+                                   background_color=(0.2, 0.8, 0.5, 1), 
+                                   halign="center",
+                                   height=100,
+                                   size_hint_y = 10)
+        
         self.start_button.bind(on_press=self.start_game)
         self.layout.add_widget(self.start_button)
 
