@@ -8,7 +8,6 @@
         id: bar
         size_hint: 0.1, 1
         pos_hint: {"center_x": 0.001, "center_y": 0.5}
-        md_bg_color: 1, 170/255, 23/255, 1
 
     MDLabel:
         text: root.title
@@ -21,12 +20,11 @@
     MDCheckbox:
         size_hint: None, None
         size: "65dp", "65dp"
-        unselected_color: 1, 170/255, 23/255, 1
+        unselected_color: 139, 0,0,0
         selected_color: 0, 0.7, 0.09, 1
         pos_hint: {"center_x": 0.95, "center_y": 0.5}
         on_active:
             app.on_complete(*args, description, bar)
-
 
     MDLabel:
         id: description
@@ -43,7 +41,7 @@ MDScreen:
     todo_list: todo_list
     name: "main"
     MDFloatLayout:
-        md_bg_color: 1, 1, 1, 1
+        md_bg_color: 227/255, 188/255,152/255,1
         MDLabel:
             text:"[b]My Tasks[/b]"
             markup: True
@@ -60,9 +58,9 @@ MDScreen:
             icon: "plus"
             pos_hint: {"center_x": 0.89, "center_y": 0.925}
             user_font_size: "30sp"
-            md_bg_color: 1, 170/255, 23/255, 1
+            md_bg_color: 100/255, 100/225, 100/225, 0.5
             theme_text_color: "Custom"
-            text_color: 1,1,1,1
+            text_color: (238/255, 238/255, 238/255, 1)
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "add_task"
