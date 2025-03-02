@@ -103,21 +103,21 @@ class MathMadnessApp(App):
             self.show_restart_button()
 
     def show_popup(self, title, message):
-        popup_layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
-        popup_layout.add_widget(Label(text=message, font_size=20))
+        popup_layout = BoxLayout(orientation='vertical', padding=25, spacing=10)
+        popup_layout.add_widget(Label(text=message, font_size=50))
 
-        close_button = Button(text="Close", font_size=20, size_hint=(None, None), size=(100, 50), background_color=(0.2, 0.6, 0.2, 1))
+        close_button = Button(text="Close", font_size=40, size_hint=(None, None), size=(200, 100), background_color=(0.2, 0.6, 0.2, 1))
         close_button.bind(on_press=self.close_popup)
         popup_layout.add_widget(close_button)
 
-        self.popup = Popup(title=title, content=popup_layout, size_hint=(None, None), size=(400, 300))
+        self.popup = Popup(title=title, content=popup_layout, size_hint=(None, None), size=(850, 300))
         self.popup.open()
 
     def close_popup(self, instance):
         self.popup.dismiss()
 
     def show_restart_button(self):
-        restart_button = Button(text="Restart Game", font_size=24, size_hint=(None, None), size=(200, 60), background_color=(0.2, 0.6, 0.2, 1))
+        restart_button = Button(text="Restart Game", font_size=25, size_hint=(None, None), size=(200, 60), background_color=(0.2, 0.6, 0.2, 1))
         restart_button.bind(on_press=self.restart_game)
         self.layout.add_widget(restart_button)
 
