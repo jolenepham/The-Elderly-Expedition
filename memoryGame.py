@@ -1,6 +1,3 @@
-from curses.textpad import rectangle
-from operator import pos
-from inform import Color
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -11,47 +8,39 @@ from kivy.clock import Clock
 from kivy.core.window import Window
 import random
 
-
-
 class MemoryGameApp(App):
     def build(self):
-        Window.clearcolor = (0.678, 0.847, 0.902, 1)
+        self.layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
         
-        self.layout = BoxLayout(orientation='vertical', padding= 0, spacing= 0)
-
-
-        self.title_label = Label (
-            text="Silly Sequence", halign="center", font_size=75, color="black")
-        
-        self.layout.add_widget(self.title_label)
-
+        # Game instructions
         self.instructions_label = Label(
-            text="This game is designed to help your memory.\nFirst, type a number for the length of the sequence.\nThen, you will have 10 seconds to memorize that sequence.\nFinally, you will be prompted to enter those numbers, one at a time.\nGood Luck!",
-            size_hint=(1, None), height=400, halign="center", font_size=40, color="black")
+            text="This game is designed to help your memory.\nFirst, type a number for the length of the sequence.\nThen, you will have 10 seconds to memorize that sequence.\nFinally, you will be prompted to enter those numbers, one at a time.\n Good Luck!",
+            size_hint=(1, None), height=150)
         
         self.layout.add_widget(self.instructions_label)
 
         # Input for sequence length
-        self.length_input_label = Label(text="Enter the number of digits you want to guess:", size_hint=(1, None), height=350, halign="center", font_size=40, color="black")
+        self.length_input_label = Label(text="Enter the number of digits you want to guess:")
         self.layout.add_widget(self.length_input_label)
 
-        self.length_input = TextInput(multiline=False, input_filter='int', halign="center", size_hint=(1, None), pos_hint={'top':1})
+        self.length_input = TextInput(multiline=False, input_filter='int', size_hint=(1, None), height=40)
         self.layout.add_widget(self.length_input)
 
         # Button to start the game
-        self.start_button = Button(text="Start Game", size_hint=(1, None), background_color=(0.2, 0.8, 0.5, 1), halign="center")
+        self.start_button = Button(text="Start Game", size_hint=(1, None), height=50)
         self.start_button.bind(on_press=self.start_game)
         self.layout.add_widget(self.start_button)
 
-        self.sequence_label = Label(text="", height=40)
+        # Label to show the sequence
+        self.sequence_label = Label(text="", size_hint=(1, None), height=40)
         self.layout.add_widget(self.sequence_label)
 
         # Input for the sequence numbers
-        self.sequence_input = TextInput(multiline=False, input_filter='int', size_hint=(1, None), height=40, size=(30, 100))
+        self.sequence_input = TextInput(multiline=False, input_filter='int', size_hint=(1, None), height=40)
         self.layout.add_widget(self.sequence_input)
 
         # Button to submit the sequence
-        self.submit_button = Button(text="Submit", size_hint=(1, None), background_color=(0.2, 0.8, 0.5, 1), halign="center", size=(80,100))
+        self.submit_button = Button(text="Submit", size_hint=(1, None), height=50)
         self.submit_button.bind(on_press=self.check_sequence)
         self.layout.add_widget(self.submit_button)
 
@@ -68,15 +57,15 @@ class MemoryGameApp(App):
         # Create the random sequence
         self.sequence = [random.randint(0, 9) for _ in range(length)]
 
-        # Display the sequence for 3 seconds
+        # Display the sequence for 10 seconds
         self.sequence_label.text = f"Memorize this: {''.join(map(str, self.sequence))}"
-        Clock.schedule_once(self.hide_sequence, 3)
+        Clock.schedule_once(self.hide_sequence, 10)
 
-        # Clear input field 
+        # Clear input field for the user to enter the sequence after delay
         self.sequence_input.text = ""
 
     def hide_sequence(self, dt):
-        # Hide the sequence 
+        # Hide the sequence after 10 seconds
         self.sequence_label.text = "Enter the sequence now."
 
     def check_sequence(self, instance):
@@ -87,6 +76,7 @@ class MemoryGameApp(App):
             self.show_popup("Empty Input", "Please enter the sequence.")
             return
 
+        # Convert the input string into a list of integers
         entered_sequence = [int(x) for x in entered_sequence if x.isdigit()]
 
         # Compare entered sequence with the original
@@ -107,4 +97,3 @@ class MemoryGameApp(App):
 
 if __name__ == "__main__":
     MemoryGameApp().run()
-
