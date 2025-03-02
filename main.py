@@ -42,8 +42,8 @@ class SplashScreen(Screen):
         # Welcome Label - properly centered
         welcome_label = Label(
             text="Welcome to The Elder's Expedition", 
-            font_size=90, bold=True, color=(1, 1, 1, 1),
-            size_hint_y=None, height=120, halign = "center")
+            font_size=90, bold=True, color=(1, 1, 1, 1), 
+            size_hint_y=None, height=120, halign = "center" )
 
         # Creators Label - positioned slightly lower
         creators = Label(
@@ -152,9 +152,9 @@ class HomeScreen(Screen):
         layout = BoxLayout(orientation="vertical", spacing=10, padding=20)
 
         # Buttons
-        btn_score = Button(text="Score", size_hint=(1, 0.2), font_size=70)
-        btn_games = Button(text="Games", size_hint=(1, 0.2), font_size=70)
-        btn_todo = Button(text="To-Do List", size_hint=(1, 0.2), font_size=70)
+        btn_score = Button(text="Score", size_hint=(1, 0.2), font_size=70, background_color = (0.96, 0.96, 0.86, 1))
+        btn_games = Button(text="Games", size_hint=(1, 0.2), font_size=70, background_color = (0.89, 0.45, 0.36, 1))
+        btn_todo = Button(text="To-Do List", size_hint=(1, 0.2), font_size=70, background_color = (0.50, 0.50, 0, 1))
 
         # Bind the Games button to the go_to_games method
         btn_games.bind(on_press=self.go_to_games)
@@ -182,9 +182,12 @@ class GameSelectScreen(Screen):
         super().__init__(**kwargs)  
         layout = BoxLayout(orientation='vertical', spacing=10, padding=20)
 
-        btn_game1 = Button(text="Math Madness", size_hint=(1, 0.2), height=100, font_size=70)
-        btn_game2 = Button(text="Crazy Cards", size_hint=(1, 0.2), height=100, font_size=70)
-        btn_game3 = Button(text="Silly Sequence", size_hint=(1, 0.2), height=100, font_size=70)
+        btn_game1 = Button(text="Math Madness", size_hint=(1, 0.2), height=100, font_size=70,
+                           background_color = (0.96, 0.96, 0.86, 1))
+        btn_game2 = Button(text="Crazy Cards", size_hint=(1, 0.2), height=100, font_size=70,
+                           background_color = (0, 0.50, 0.50, 1))
+        btn_game3 = Button(text="Silly Sequence", size_hint=(1, 0.2), height=100, font_size=70,
+                           background_color = (0.42, 0.56, 0.68, 1))
 
         btn_game1.bind(on_press=self.game1_action)
         btn_game2.bind(on_press=self.game2_action)
