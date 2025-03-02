@@ -21,7 +21,7 @@ class MathMadnessApp(App):
             self.rect = Rectangle(size=self.layout.size, pos=self.layout.pos)
         self.layout.bind(size=self.update_rect, pos=self.update_rect)
 
-        self.bg_image = Image(source="./math/symbols.png", allow_stretch=False, keep_ratio=False)
+        self.bg_image = Image(source="./game_pics/symbols.png", allow_stretch=False, keep_ratio=False)
         self.bg_image.size_hint = (1, 2)
         self.bg_image.height = 300
         self.layout.add_widget(self.bg_image)
