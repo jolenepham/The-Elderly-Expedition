@@ -1,11 +1,13 @@
 #the card flip Game
 #code base from AugustDanell in learning kivy
+from turtle import Screen
 from docutils.nodes import image
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
 from kivy.graphics import Color, Rectangle
 import random
@@ -18,6 +20,7 @@ from pygments.styles.dracula import background
     have the same link as another card with type 1, both of them will have link to a picture of a duck. By comparing the types we can, as such, discern if we have a match between
     two cards or not.  
 '''
+
 
 #making the full deck of cards
 

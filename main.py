@@ -1,5 +1,6 @@
 import mathGame
 import sequence
+import Crazy_Cards
 
 from cProfile import label
 from kivy.app import App
@@ -149,7 +150,7 @@ class GameSelectScreen(Screen):
 
     def game2_action(self, instance):
         print("Crazy Cards Game Selected")
-        
+        Crazy_Cards.Memory().run()
         
 
     def game3_action(self, instance):
