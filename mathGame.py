@@ -26,10 +26,10 @@ class MathMadnessApp(App):
         self.bg_image.height = 300
         self.layout.add_widget(self.bg_image)
 
-        self.title_label = Label(text="Welcome to Math Madness!", font_size=50, bold=True, font_name="DejaVuSans", color=(0.2, 0.4, 0.2, 1))
+        self.title_label = Label(text="Welcome to Math Madness!", font_size=75, bold=True, font_name="DejaVuSans", color=(0.2, 0.4, 0.2, 1))
         self.layout.add_widget(self.title_label)
 
-        self.start_button = Button(text="Start Game", font_size=24, size_hint=(None, None), size=(200, 60), background_color=(0.2, 0.6, 0.2, 1))
+        self.start_button = Button(text="Start Game", font_size=30, size_hint=(None, None), size=(250, 100), background_color=(0.2, 0.6, 0.2, 1))
         self.start_button.bind(on_press=self.start_game)
         self.layout.add_widget(self.start_button)
 
@@ -47,20 +47,20 @@ class MathMadnessApp(App):
             self.rect = Rectangle(size=self.layout.size, pos=self.layout.pos)
         self.layout.bind(size=self.update_rect, pos=self.update_rect)
 
-        self.title_label = Label(text="Math Madness Game", font_size=50, bold=True, font_name="DejaVuSans", color=(0.2, 0.4, 0.2, 1))
+        self.title_label = Label(text="Math Madness Game", font_size=75, bold=True, font_name="DejaVuSans", color=(0.2, 0.4, 0.2, 1))
         self.layout.add_widget(self.title_label)
 
-        self.question_label = Label(text=self.question, font_size=35, color=(0.3, 0.2, 0.1, 1))
+        self.question_label = Label(text=self.question, font_size=50, color=(0.3, 0.2, 0.1, 1))
         self.layout.add_widget(self.question_label)
 
-        self.answer_input = TextInput(hint_text="Your answer", multiline=False, font_size=25, size_hint=(None, None), size=(200, 44), background_color=(0.8, 0.8, 0.6, 1))
+        self.answer_input = TextInput(hint_text="Your answer", multiline=False, font_size=40, size_hint=(1, 0.5), size=(300, 100), background_color=(0.8, 0.8, 0.6, 1))
         self.layout.add_widget(self.answer_input)
 
-        self.submit_button = Button(text="Submit Answer", font_size=25, size_hint=(None, None), size=(200, 60), background_color=(0.2, 0.6, 0.2, 1))
+        self.submit_button = Button(text="Submit Answer", font_size=40, size_hint=(1, 1), size=(300, 100), background_color=(0.2, 0.6, 0.2, 1))
         self.submit_button.bind(on_press=self.check_answer)
         self.layout.add_widget(self.submit_button)
 
-        self.score_label = Label(text=f"Score: {self.score}/{self.num_questions}", font_size=30, color=(0.2, 0.4, 0.2, 1))
+        self.score_label = Label(text=f"Score: {self.score}/{self.num_questions}", font_size=50, color=(0.2, 0.4, 0.2, 1))
         self.layout.add_widget(self.score_label)
 
     def ask_question(self):
