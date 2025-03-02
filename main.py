@@ -89,33 +89,66 @@ class StartScreen(Screen):
         begin.bind(on_press = self.go_to_home)
     def go_to_home(self,dt):
         self.manager.current = "home"
-    
-
 
 
 # Home Screen with 3 buttons
 class HomeScreen(Screen):
-   def __init__(self, **kwargs):
-       super().__init__(**kwargs)
-       layout = BoxLayout(orientation="vertical", spacing=10, padding=20)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        layout = BoxLayout(orientation="vertical", spacing=10, padding=20)
+
+        # Buttons
+        btn_score = Button(text="Score", size_hint=(1, 0.2), font_size=70)
+        btn_games = Button(text="Games", size_hint=(1, 0.2), font_size=70)
+        btn_todo = Button(text="To-Do List", size_hint=(1, 0.2), font_size=70)
+
+        # Bind the Games button to the go_to_games method
+        btn_games.bind(on_press=self.go_to_games)
+
+        # Add widgets to layout
+        layout.add_widget(btn_score)
+        layout.add_widget(btn_games)
+        layout.add_widget(btn_todo)
+
+        self.add_widget(layout)
+
+    def go_to_games(self, dt):
+        # Switch to the game select screen when the button is clicked
+        self.manager.current = "games"
 
 
-       # Buttons
-       btn_score = Button(text="Score", size_hint=(1, 0.2))
-       btn_games = Button(text="Games", size_hint=(1, 0.2))
-       btn_todo = Button(text="To-Do List", size_hint=(1, 0.2))
 
+#New Screen for the 3 games
+class GameSelectScreen(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)  
+        layout = BoxLayout(orientation='vertical', spacing=10, padding=20)
 
-       # Add widgets to layout
-       layout.add_widget(btn_score)
-       layout.add_widget(btn_games)
-       layout.add_widget(btn_todo)
+        btn_game1 = Button(text="Math Madness", size_hint=(1, 0.2), height=100, font_size=70)
+        btn_game2 = Button(text="Crazy Cards", size_hint=(1, 0.2), height=100, font_size=70)
+        btn_game3 = Button(text="Silly Sequence", size_hint=(1, 0.2), height=100, font_size=70)
 
+        btn_game1.bind(on_press=self.game1_action)
+        btn_game2.bind(on_press=self.game2_action)
+        btn_game3.bind(on_press=self.game3_action)
 
-       self.add_widget(layout)
+        layout.add_widget(btn_game1)
+        layout.add_widget(btn_game2)
+        layout.add_widget(btn_game3)
 
+        self.add_widget(layout)
 
+    def game1_action(self, instance):
+        print("Game 1 selected")
+        # Implement game 1 action here
 
+    def game2_action(self, instance):
+        print("Game 2 selected")
+        # Implement game 2 action here
+
+    def game3_action(self, instance):
+        print("Game 3 selected")
+        # Implement game 3 action here
 
 # Main App
 class EldersExpeditionApp(App):
@@ -130,6 +163,7 @@ class EldersExpeditionApp(App):
        sm.add_widget(splash)
        sm.add_widget(HomeScreen(name="home"))
        sm.add_widget(StartScreen(name="start"))
+       sm.add_widget(GameSelectScreen(name="games"))
 
 
        return sm
