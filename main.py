@@ -1,3 +1,6 @@
+import mathGame
+import sequence
+
 from cProfile import label
 from kivy.app import App
 from kivy.app import App
@@ -16,6 +19,7 @@ from kivy.uix.button import Button
 from kivy.clock import Clock
 from kivy.graphics import *
 from kivy.uix.image import Image
+
 
 class SplashScreen(Screen):
     def __init__(self, **kwargs):
@@ -139,16 +143,19 @@ class GameSelectScreen(Screen):
         self.add_widget(layout)
 
     def game1_action(self, instance):
-        print("Game 1 selected")
-        # Implement game 1 action here
+        print("Math Madness Game Selected")
+        mathGame.MathMadnessApp().run()
+       
 
     def game2_action(self, instance):
-        print("Game 2 selected")
-        # Implement game 2 action here
+        print("Crazy Cards Game Selected")
+        
+        
 
     def game3_action(self, instance):
-        print("Game 3 selected")
-        # Implement game 3 action here
+        print("Silly Sequence Game Selected")
+        sequence.MemoryGameApp().run()
+        
 
 # Main App
 class EldersExpeditionApp(App):
